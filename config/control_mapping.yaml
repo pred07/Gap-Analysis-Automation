@@ -1,0 +1,497 @@
+# ============================================================================
+# Security Control Mapping - All 65 Controls
+# ============================================================================
+
+version: "1.0.0"
+total_controls: 65
+last_updated: "2025-11-20"
+
+modules:
+  module1:
+    name: "Input & Data Validation Analyzer"
+    description: "Tests for injection flaws and input validation issues"
+    control_count: 10
+    tools:
+      - "OWASP ZAP"
+      - "Nikto"
+      - "Custom Python Fuzzers"
+    controls:
+      - id: "001"
+        name: "SQL_Injection"
+        description: "SQL Injection vulnerability testing"
+        category: "Injection"
+        severity: "Critical"
+        
+      - id: "002"
+        name: "XSS"
+        description: "Cross-Site Scripting (XSS) vulnerability testing"
+        category: "Injection"
+        severity: "High"
+        
+      - id: "003"
+        name: "HTTP_Request_Smuggling"
+        description: "HTTP Request Smuggling vulnerability testing"
+        category: "Protocol"
+        severity: "High"
+        
+      - id: "004"
+        name: "Client_Side_Validation"
+        description: "Client-side validation bypass testing"
+        category: "Validation"
+        severity: "Medium"
+        
+      - id: "005"
+        name: "File_Upload_Validation"
+        description: "File upload validation and restriction testing"
+        category: "Validation"
+        severity: "High"
+        
+      - id: "006"
+        name: "XML_Validation"
+        description: "XML injection and validation testing"
+        category: "Validation"
+        severity: "Medium"
+        
+      - id: "007"
+        name: "Schema_Validation"
+        description: "Input schema validation testing"
+        category: "Validation"
+        severity: "Medium"
+        
+      - id: "008"
+        name: "Content_Type_Validation"
+        description: "Content-Type header validation testing"
+        category: "Validation"
+        severity: "Low"
+        
+      - id: "009"
+        name: "Buffer_Overflow_Basic"
+        description: "Basic buffer overflow vulnerability testing"
+        category: "Memory"
+        severity: "High"
+        
+      - id: "010"
+        name: "DOS_Basic"
+        description: "Basic Denial of Service vulnerability testing"
+        category: "Availability"
+        severity: "Medium"
+
+  module2:
+    name: "Authentication Analyzer"
+    description: "Validates authentication mechanisms"
+    control_count: 7
+    tools:
+      - "Python requests"
+      - "Selenium (optional)"
+      - "Custom validators"
+    controls:
+      - id: "011"
+        name: "Password_Policy"
+        description: "Password complexity and policy enforcement"
+        category: "Authentication"
+        severity: "High"
+        
+      - id: "012"
+        name: "Login_Error_Messages"
+        description: "Login error message information disclosure"
+        category: "Authentication"
+        severity: "Medium"
+        
+      - id: "013"
+        name: "Last_Login_Message"
+        description: "Last login message display"
+        category: "Authentication"
+        severity: "Low"
+        
+      - id: "014"
+        name: "Password_Encryption_Transit"
+        description: "Password encryption in transit"
+        category: "Authentication"
+        severity: "Critical"
+        
+      - id: "015"
+        name: "Password_Change_Process"
+        description: "Secure password change process"
+        category: "Authentication"
+        severity: "Medium"
+        
+      - id: "016"
+        name: "Multi_Factor_Authentication"
+        description: "MFA implementation and enforcement"
+        category: "Authentication"
+        severity: "High"
+        
+      - id: "017"
+        name: "API_Authentication"
+        description: "API authentication (JWT/OAuth/SAML)"
+        category: "Authentication"
+        severity: "Critical"
+
+  module3:
+    name: "Authorization Analyzer"
+    description: "Verifies access control mechanisms"
+    control_count: 5
+    tools:
+      - "Document text extraction"
+      - "Custom parsers"
+    controls:
+      - id: "018"
+        name: "RBAC"
+        description: "Role-Based Access Control implementation"
+        category: "Authorization"
+        severity: "High"
+        
+      - id: "019"
+        name: "User_State_Management"
+        description: "User state and session management"
+        category: "Authorization"
+        severity: "Medium"
+        
+      - id: "020"
+        name: "Database_Permissions"
+        description: "Database-level permission controls"
+        category: "Authorization"
+        severity: "High"
+        
+      - id: "021"
+        name: "OS_Access_Restrictions"
+        description: "Operating system access restrictions"
+        category: "Authorization"
+        severity: "High"
+        
+      - id: "022"
+        name: "API_Authorization"
+        description: "API authorization (SAML/RBAC/ABAC)"
+        category: "Authorization"
+        severity: "High"
+
+  module4:
+    name: "Sensitive Data Protection Analyzer"
+    description: "Ensures data protection at rest and in transit"
+    control_count: 12
+    tools:
+      - "testssl.sh"
+      - "OpenSSL"
+      - "curl"
+      - "ZAP passive scan"
+    controls:
+      - id: "023"
+        name: "HTTPS_TLS"
+        description: "HTTPS/TLS implementation and configuration"
+        category: "Encryption"
+        severity: "Critical"
+        
+      - id: "024"
+        name: "Sensitive_Data_Masking"
+        description: "Sensitive data masking in UI/logs"
+        category: "Data Protection"
+        severity: "High"
+        
+      - id: "025"
+        name: "Password_Encryption_Rest"
+        description: "Password encryption at rest"
+        category: "Encryption"
+        severity: "Critical"
+        
+      - id: "026"
+        name: "Data_Rest_Encryption"
+        description: "Data-at-rest encryption"
+        category: "Encryption"
+        severity: "High"
+        
+      - id: "027"
+        name: "Data_Transit_Encryption"
+        description: "Data-in-transit encryption"
+        category: "Encryption"
+        severity: "Critical"
+        
+      - id: "028"
+        name: "PCI_PAN_Masking"
+        description: "PCI DSS PAN (Primary Account Number) masking"
+        category: "PCI Compliance"
+        severity: "Critical"
+        
+      - id: "029"
+        name: "PCI_SAD_Not_Stored"
+        description: "PCI DSS SAD (Sensitive Authentication Data) not stored"
+        category: "PCI Compliance"
+        severity: "Critical"
+        
+      - id: "030"
+        name: "PCI_Log_Masking"
+        description: "PCI DSS log masking requirements"
+        category: "PCI Compliance"
+        severity: "High"
+        
+      - id: "031"
+        name: "Local_DB_Security"
+        description: "Local database secure storage"
+        category: "Data Protection"
+        severity: "High"
+        
+      - id: "032"
+        name: "Clear_Text_Detection"
+        description: "Clear-text password/data detection"
+        category: "Data Protection"
+        severity: "Critical"
+        
+      - id: "033"
+        name: "Local_Device_Storage"
+        description: "Local device secure storage"
+        category: "Data Protection"
+        severity: "Medium"
+        
+      - id: "034"
+        name: "UI_Tampering_Protection"
+        description: "UI tampering and reverse engineering protection"
+        category: "Data Protection"
+        severity: "Medium"
+
+  module5:
+    name: "Session Management Analyzer"
+    description: "Validates session handling security"
+    control_count: 7
+    tools:
+      - "OWASP ZAP"
+      - "curl"
+      - "Custom analyzers"
+    controls:
+      - id: "035"
+        name: "Session_Timeout"
+        description: "Session timeout implementation"
+        category: "Session Management"
+        severity: "Medium"
+        
+      - id: "036"
+        name: "Session_ID_Randomness"
+        description: "Session ID randomness and unpredictability"
+        category: "Session Management"
+        severity: "High"
+        
+      - id: "037"
+        name: "Session_Not_In_URL"
+        description: "Session ID not exposed in URL"
+        category: "Session Management"
+        severity: "High"
+        
+      - id: "038"
+        name: "Cookie_Flags"
+        description: "Secure cookie flags (Secure, HttpOnly, SameSite)"
+        category: "Session Management"
+        severity: "High"
+        
+      - id: "039"
+        name: "Server_Side_Validation"
+        description: "Server-side session validation"
+        category: "Session Management"
+        severity: "Critical"
+        
+      - id: "040"
+        name: "Token_Expiry"
+        description: "Token expiration and refresh"
+        category: "Session Management"
+        severity: "High"
+        
+      - id: "041"
+        name: "Session_Fixation_Prevention"
+        description: "Session fixation attack prevention"
+        category: "Session Management"
+        severity: "High"
+
+  module6:
+    name: "Logging & Monitoring Analyzer"
+    description: "Verifies logging and audit trail controls"
+    control_count: 8
+    tools:
+      - "Log file parsers"
+      - "Keyword matchers"
+    controls:
+      - id: "042"
+        name: "Authentication_Logging"
+        description: "Authentication events logging"
+        category: "Logging"
+        severity: "High"
+        
+      - id: "043"
+        name: "Authorization_Logging"
+        description: "Authorization events logging"
+        category: "Logging"
+        severity: "High"
+        
+      - id: "044"
+        name: "Access_Logging"
+        description: "System access logging"
+        category: "Logging"
+        severity: "Medium"
+        
+      - id: "045"
+        name: "Error_Logging"
+        description: "Error and exception logging"
+        category: "Logging"
+        severity: "Medium"
+        
+      - id: "046"
+        name: "Security_Event_Logging"
+        description: "Security events logging"
+        category: "Logging"
+        severity: "High"
+        
+      - id: "047"
+        name: "Audit_Trail_Completeness"
+        description: "Complete audit trail maintenance"
+        category: "Logging"
+        severity: "High"
+        
+      - id: "048"
+        name: "Log_Integrity"
+        description: "Log integrity and tamper protection"
+        category: "Logging"
+        severity: "High"
+        
+      - id: "049"
+        name: "Log_Retention"
+        description: "Log retention and archival"
+        category: "Logging"
+        severity: "Medium"
+
+  module7:
+    name: "Application & API Security Analyzer"
+    description: "Tests API-specific security controls"
+    control_count: 10
+    tools:
+      - "OWASP ZAP API Scanner"
+      - "Newman (Postman CLI)"
+      - "Python requests"
+    controls:
+      - id: "050"
+        name: "API_Method_Security"
+        description: "API HTTP method restrictions"
+        category: "API Security"
+        severity: "High"
+        
+      - id: "051"
+        name: "API_Rate_Limiting"
+        description: "API rate limiting implementation"
+        category: "API Security"
+        severity: "Medium"
+        
+      - id: "052"
+        name: "API_Input_Validation"
+        description: "API input validation"
+        category: "API Security"
+        severity: "High"
+        
+      - id: "053"
+        name: "API_Authentication_Validation"
+        description: "API authentication validation"
+        category: "API Security"
+        severity: "Critical"
+        
+      - id: "054"
+        name: "API_Sensitive_Params"
+        description: "Sensitive data in API parameters"
+        category: "API Security"
+        severity: "High"
+        
+      - id: "055"
+        name: "API_Error_Handling"
+        description: "API error handling and responses"
+        category: "API Security"
+        severity: "Medium"
+        
+      - id: "056"
+        name: "API_CORS_Configuration"
+        description: "CORS configuration security"
+        category: "API Security"
+        severity: "Medium"
+        
+      - id: "057"
+        name: "API_Versioning"
+        description: "API versioning implementation"
+        category: "API Security"
+        severity: "Low"
+        
+      - id: "058"
+        name: "Secure_Coding_Evidence"
+        description: "Secure coding practices evidence"
+        category: "Development"
+        severity: "Medium"
+        
+      - id: "059"
+        name: "Third_Party_Components"
+        description: "Third-party component security"
+        category: "Development"
+        severity: "High"
+
+  module8:
+    name: "Infrastructure & Container Analyzer"
+    description: "Assesses host and container security"
+    control_count: 6
+    tools:
+      - "Lynis"
+      - "Trivy"
+      - "OpenSCAP"
+    controls:
+      - id: "060"
+        name: "Host_Hardening"
+        description: "Host/OS hardening implementation"
+        category: "Infrastructure"
+        severity: "High"
+        
+      - id: "061"
+        name: "Container_Security"
+        description: "Container image security"
+        category: "Infrastructure"
+        severity: "High"
+        
+      - id: "062"
+        name: "Container_Runtime_Security"
+        description: "Container runtime security configuration"
+        category: "Infrastructure"
+        severity: "High"
+        
+      - id: "063"
+        name: "Least_Privilege"
+        description: "Least privilege principle enforcement"
+        category: "Infrastructure"
+        severity: "High"
+        
+      - id: "064"
+        name: "DOS_Protection_Infrastructure"
+        description: "Infrastructure-level DoS protection"
+        category: "Infrastructure"
+        severity: "Medium"
+        
+      - id: "065"
+        name: "Security_Updates"
+        description: "Security updates and patch management"
+        category: "Infrastructure"
+        severity: "High"
+
+# Compliance Mapping
+compliance_mapping:
+  pci_dss:
+    - "023"  # Requirement 4.1
+    - "025"  # Requirement 8.2.1
+    - "028"  # Requirement 3.3
+    - "029"  # Requirement 3.2
+    - "030"  # Requirement 10.3
+    
+  gdpr:
+    - "023"  # Article 32
+    - "024"  # Article 32
+    - "026"  # Article 32
+    - "027"  # Article 32
+    
+  owasp_top_10:
+    - "001"  # A03:2021 - Injection
+    - "002"  # A03:2021 - Injection
+    - "011"  # A07:2021 - Authentication Failures
+    - "018"  # A01:2021 - Broken Access Control
+    - "023"  # A02:2021 - Cryptographic Failures
+    
+  iso_27001:
+    - "011"  # A.9.4.3
+    - "018"  # A.9.4.1
+    - "042"  # A.12.4.1
+    - "060"  # A.12.6.1

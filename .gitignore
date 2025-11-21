@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Outputs
+outputs/*.json
+outputs/*.xml
+outputs/*.html
+logs/*.log
+cache/*
+evidence/*
+
+# Sensitive data
+config/config.yaml
+*.key
+*.pem
+*.p12
+credentials.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Backups
+*.backup
+*.bak
