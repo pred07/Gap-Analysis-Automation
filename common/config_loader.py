@@ -1,302 +1,241 @@
 """
-Configuration Loader for Security GAP Analysis
-Handles loading and validation of YAML configuration files
+Configuration loader with schema validation for the GAP Analysis framework.
 """
 
-import yaml
-import os
-from typing import Dict, Any, Optional
+from __future__ import annotations
+
+import json
 from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+import yaml
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
+
+from .helpers import ensure_dir, project_root
 
 
 class ConfigurationError(Exception):
-    """Custom exception for configuration errors"""
-    pass
+    """Raised when configuration files are missing or invalid."""
+
+
+class TargetSettings(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    url: Optional[str] = None
+    api_base: Optional[str] = None
+    endpoints: List[str] = Field(default_factory=list)
+    description: Optional[str] = None
+
+
+class OutputSettings(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    directory: str = "outputs"
+    format: str = "json"
+    additional_formats: List[str] = Field(default_factory=list)
+    log_level: str = "INFO"
+    log_retention_days: int = 30
+
+
+class ExecutionSettings(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    parallel: bool = False
+    max_workers: int = 4
+    timeout: int = 300
+    retry_count: int = 2
+    retry_delay: int = 5
+    skip_on_missing_tools: bool = True
+    continue_on_error: bool = True
+
+
+class ModuleToggle(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    enabled: bool = True
+    timeout: Optional[int] = None
+
+
+class ConfigData(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    target: TargetSettings = Field(default_factory=TargetSettings)
+    credentials: Dict[str, Any] = Field(default_factory=dict)
+    documents: List[Dict[str, Any]] = Field(default_factory=list)
+    output: OutputSettings = Field(default_factory=OutputSettings)
+    execution: ExecutionSettings = Field(default_factory=ExecutionSettings)
+    modules: Dict[str, ModuleToggle] = Field(default_factory=dict)
+    tool_config: Dict[str, Any] = Field(default_factory=dict)
+    notifications: Dict[str, Any] = Field(default_factory=dict)
+    proxy: Dict[str, Any] = Field(default_factory=dict)
+    advanced: Dict[str, Any] = Field(default_factory=dict)
+
+
+class ToolPaths(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    tools: Dict[str, str] = Field(default_factory=dict)
+
+
+class Control(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    id: str
+    name: str
+    description: Optional[str] = None
+    category: Optional[str] = None
+    severity: Optional[str] = None
+
+
+class ModuleControlMap(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    name: str
+    description: Optional[str] = None
+    control_count: Optional[int] = None
+    tools: List[str] = Field(default_factory=list)
+    controls: List[Control] = Field(default_factory=list)
+
+
+class ControlMapping(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    version: Optional[str] = None
+    total_controls: Optional[int] = None
+    modules: Dict[str, ModuleControlMap] = Field(default_factory=dict)
 
 
 class Config:
-    """
-    Configuration manager for the security assessment framework
-    
-    Loads and provides access to:
-    - Global configuration (config.yaml)
-    - Tool paths (tool_paths.yaml)
-    - Control mappings (control_mapping.yaml)
-    """
-    
-    def __init__(self, config_dir: str = "config"):
-        """
-        Initialize configuration loader
-        
-        Args:
-            config_dir (str): Path to config directory
-        """
+    """Facade for accessing validated configuration data."""
+
+    def __init__(self, config_dir: str | Path = "config"):
         self.config_dir = Path(config_dir)
-        self._config = {}
-        self._tool_paths = {}
-        self._control_mapping = {}
-        
-        # Load all configurations
-        self._load_all()
-    
-    def _load_all(self):
-        """Load all configuration files"""
+        if not self.config_dir.exists():
+            raise ConfigurationError(f"Config directory not found: {self.config_dir}")
+
         try:
-            self._config = self._load_yaml("config.yaml")
-            self._tool_paths = self._load_yaml("tool_paths.yaml")
-            self._control_mapping = self._load_yaml("control_mapping.yaml")
-        except Exception as e:
-            raise ConfigurationError(f"Failed to load configuration: {e}")
-    
+            self._config = ConfigData(**self._load_yaml("config.yaml"))
+            self._tool_paths = ToolPaths(**self._load_yaml("tool_paths.yaml"))
+            self._control_mapping = ControlMapping(**self._load_yaml("control_mapping.yaml"))
+        except ValidationError as exc:
+            raise ConfigurationError(str(exc)) from exc
+
+        # Ensure output directories exist
+        ensure_dir(project_root() / self._config.output.directory)
+        ensure_dir(project_root() / "logs")
+        ensure_dir(project_root() / "evidence")
+
+    # ------------------------------------------------------------------ #
+    # YAML helpers
     def _load_yaml(self, filename: str) -> Dict[str, Any]:
-        """
-        Load YAML file
-        
-        Args:
-            filename (str): YAML filename
-        
-        Returns:
-            dict: Parsed YAML data
-        """
-        filepath = self.config_dir / filename
-        
-        if not filepath.exists():
-            # Return empty dict if file doesn't exist
-            return {}
-        
-        try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                data = yaml.safe_load(f)
-                return data if data is not None else {}
-        except yaml.YAMLError as e:
-            raise ConfigurationError(f"Error parsing {filename}: {e}")
-    
-    # Global Configuration Methods
-    def get(self, key: str, default: Any = None) -> Any:
-        """
-        Get configuration value
-        
-        Args:
-            key (str): Configuration key (supports dot notation: 'target.url')
-            default: Default value if key not found
-        
-        Returns:
-            Configuration value
-        """
-        keys = key.split('.')
-        value = self._config
-        
-        for k in keys:
-            if isinstance(value, dict) and k in value:
-                value = value[k]
+        path = self.config_dir / filename
+        if not path.exists():
+            raise ConfigurationError(f"Missing configuration file: {path}")
+
+        with open(path, "r", encoding="utf-8") as handle:
+            data = yaml.safe_load(handle) or {}
+            return data
+
+    # ------------------------------------------------------------------ #
+    # General getters
+    def get(self, dotted_key: str, default: Any = None) -> Any:
+        data = self._config.model_dump()
+        for part in dotted_key.split("."):
+            if isinstance(data, dict) and part in data:
+                data = data[part]
             else:
                 return default
-        
-        return value
-    
+        return data
+
     def get_target_url(self) -> Optional[str]:
-        """Get target URL"""
-        return self.get('target.url')
-    
+        return self._config.target.url
+
     def get_target_api(self) -> Optional[str]:
-        """Get target API base URL"""
-        return self.get('target.api_base')
-    
-    def get_credentials(self) -> Dict[str, str]:
-        """Get test credentials"""
-        return self.get('credentials', {})
-    
-    def get_documents(self) -> list:
-        """Get list of documents to analyze"""
-        return self.get('documents', [])
-    
+        return self._config.target.api_base
+
+    def get_documents(self) -> List[Dict[str, Any]]:
+        return self._config.documents
+
     def get_output_dir(self) -> str:
-        """Get output directory"""
-        return self.get('output.directory', 'outputs')
-    
+        return self._config.output.directory
+
     def get_log_level(self) -> str:
-        """Get log level"""
-        return self.get('output.log_level', 'INFO')
-    
-    def is_parallel_execution(self) -> bool:
-        """Check if parallel execution is enabled"""
-        return self.get('execution.parallel', False)
-    
-    def get_timeout(self) -> int:
-        """Get module execution timeout"""
-        return self.get('execution.timeout', 300)
-    
-    def get_retry_count(self) -> int:
-        """Get retry count for failed operations"""
-        return self.get('execution.retry_count', 2)
-    
-    # Tool Paths Methods
+        return self._config.output.log_level
+
+    def get_execution_settings(self) -> ExecutionSettings:
+        return self._config.execution
+
     def get_tool_path(self, tool_name: str) -> Optional[str]:
-        """
-        Get path to security tool
-        
-        Args:
-            tool_name (str): Tool name (e.g., 'zap', 'nikto')
-        
-        Returns:
-            str: Tool path or None
-        """
-        return self._tool_paths.get('tools', {}).get(tool_name)
-    
+        return self._tool_paths.tools.get(tool_name)
+
     def get_all_tool_paths(self) -> Dict[str, str]:
-        """Get all tool paths"""
-        return self._tool_paths.get('tools', {})
-    
-    # Control Mapping Methods
-    def get_module_controls(self, module_number: int) -> list:
-        """
-        Get controls for a specific module
-        
-        Args:
-            module_number (int): Module number (1-8)
-        
-        Returns:
-            list: List of control dictionaries
-        """
-        module_key = f"module{module_number}"
-        return self._control_mapping.get('modules', {}).get(module_key, {}).get('controls', [])
-    
-    def get_module_info(self, module_number: int) -> Dict[str, Any]:
-        """
-        Get complete module information
-        
-        Args:
-            module_number (int): Module number (1-8)
-        
-        Returns:
-            dict: Module information
-        """
-        module_key = f"module{module_number}"
-        return self._control_mapping.get('modules', {}).get(module_key, {})
-    
-    def get_control_by_id(self, control_id: str) -> Optional[Dict]:
-        """
-        Get control information by ID
-        
-        Args:
-            control_id (str): Control ID
-        
-        Returns:
-            dict: Control information or None
-        """
-        for module in self._control_mapping.get('modules', {}).values():
-            for control in module.get('controls', []):
-                if control.get('id') == control_id:
-                    return control
+        return self._tool_paths.tools
+
+    def get_module_info(self, module_number: int) -> ModuleControlMap:
+        key = f"module{module_number}"
+        module = self._control_mapping.modules.get(key)
+        if not module:
+            raise ConfigurationError(f"Control mapping missing for {key}")
+        return module
+
+    def get_module_controls(self, module_number: int) -> List[Dict[str, Any]]:
+        return [control.model_dump() for control in self.get_module_info(module_number).controls]
+
+    def get_control_by_id(self, control_id: str) -> Optional[Dict[str, Any]]:
+        for module in self._control_mapping.modules.values():
+            for control in module.controls:
+                if control.id == control_id:
+                    return control.model_dump()
         return None
-    
-    def get_all_controls(self) -> list:
-        """Get all 65 controls"""
-        all_controls = []
-        for module in self._control_mapping.get('modules', {}).values():
-            all_controls.extend(module.get('controls', []))
-        return all_controls
-    
+
     def get_total_controls_count(self) -> int:
-        """Get total number of controls"""
-        return len(self.get_all_controls())
-    
-    # Validation Methods
-    def validate(self) -> Dict[str, list]:
-        """
-        Validate configuration
-        
-        Returns:
-            dict: Validation results with errors and warnings
-        """
-        errors = []
-        warnings = []
-        
-        # Check required configurations
-        if not self.get_target_url() and not self.get_target_api():
-            errors.append("No target URL or API configured")
-        
-        # Check tool paths
-        tools = self.get_all_tool_paths()
-        if not tools:
-            warnings.append("No tool paths configured")
-        
-        # Check control mappings
-        if self.get_total_controls_count() != 65:
-            warnings.append(f"Expected 65 controls, found {self.get_total_controls_count()}")
-        
-        # Check output directory
-        output_dir = self.get_output_dir()
-        if not os.path.exists(output_dir):
-            try:
-                os.makedirs(output_dir, exist_ok=True)
-            except Exception as e:
-                errors.append(f"Cannot create output directory: {e}")
-        
+        if self._control_mapping.total_controls:
+            return self._control_mapping.total_controls
+        return sum(len(module.controls) for module in self._control_mapping.modules.values())
+
+    def list_modules(self) -> List[str]:
+        return sorted(self._control_mapping.modules.keys())
+
+    def module_enabled(self, module_number: int) -> bool:
+        toggle = self._config.modules.get(f"module{module_number}")
+        return toggle.enabled if toggle else True
+
+    # ------------------------------------------------------------------ #
+    def validate(self) -> Dict[str, Any]:
+        errors: List[str] = []
+        warnings: List[str] = []
+
+        if not (self.get_target_url() or self.get_target_api()):
+            errors.append("No target url/api configured under target section.")
+
+        expected_controls = 65
+        total_controls = self.get_total_controls_count()
+        if total_controls != expected_controls:
+            warnings.append(f"Expected {expected_controls} controls, found {total_controls}.")
+
+        for tool, path in self.get_all_tool_paths().items():
+            if not Path(path).exists():
+                warnings.append(f"Tool path not found: {tool} -> {path}")
+
         return {
-            "valid": len(errors) == 0,
+            "valid": not errors,
             "errors": errors,
-            "warnings": warnings
+            "warnings": warnings,
         }
-    
+
+    # ------------------------------------------------------------------ #
+    def dump(self) -> Dict[str, Any]:
+        """Return combined configuration for debugging."""
+        return {
+            "config": self._config.model_dump(),
+            "tool_paths": self._tool_paths.model_dump(),
+            "control_mapping": json.loads(self._control_mapping.model_dump_json()),
+        }
+
     def __repr__(self) -> str:
-        """String representation"""
         return f"Config(target={self.get_target_url()}, controls={self.get_total_controls_count()})"
 
 
-def load_config(config_dir: str = "config") -> Config:
-    """
-    Factory function to load configuration
-    
-    Args:
-        config_dir (str): Path to config directory
-    
-    Returns:
-        Config: Configuration instance
-    """
+def load_config(config_dir: str | Path = "config") -> Config:
     return Config(config_dir)
 
-
-# Example usage
-if __name__ == "__main__":
-    print("=== Configuration Loader Test ===\n")
-    
-    try:
-        config = load_config()
-        
-        print("Target Configuration:")
-        print(f"  URL: {config.get_target_url()}")
-        print(f"  API: {config.get_target_api()}")
-        
-        print("\nExecution Settings:")
-        print(f"  Parallel: {config.is_parallel_execution()}")
-        print(f"  Timeout: {config.get_timeout()}s")
-        print(f"  Retry: {config.get_retry_count()}")
-        
-        print("\nTool Paths:")
-        for tool, path in config.get_all_tool_paths().items():
-            print(f"  {tool}: {path}")
-        
-        print("\nControl Mapping:")
-        print(f"  Total Controls: {config.get_total_controls_count()}")
-        
-        print("\nModule 1 Info:")
-        module1 = config.get_module_info(1)
-        print(f"  Name: {module1.get('name')}")
-        print(f"  Description: {module1.get('description')}")
-        print(f"  Controls: {len(module1.get('controls', []))}")
-        
-        print("\nValidation:")
-        validation = config.validate()
-        print(f"  Valid: {validation['valid']}")
-        if validation['errors']:
-            print("  Errors:")
-            for error in validation['errors']:
-                print(f"    - {error}")
-        if validation['warnings']:
-            print("  Warnings:")
-            for warning in validation['warnings']:
-                print(f"    - {warning}")
-    
-    except ConfigurationError as e:
-        print(f"Configuration Error: {e}")

@@ -3,3 +3,12 @@ colorama
 python-dotenv
 pydantic
 rich
+pyyaml
+jsonschema
+tabulate
+tqdm
+beautifulsoup4
+lxml
+python-docx
+pypdf2
+pytest

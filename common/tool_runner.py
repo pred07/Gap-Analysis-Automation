@@ -1,15 +1,14 @@
 """
-External Tool Executor for Security GAP Analysis
-Handles execution of external security tools with error handling and timeouts
+External Tool Executor for Security GAP Analysis.
 """
 
-import subprocess
+from __future__ import annotations
+
 import os
-import signal
-import shlex
-from typing import List, Optional, Dict, Tuple
+import subprocess
+import time
 from datetime import datetime
-import tempfile
+from typing import Any, Dict, List, Optional
 
 
 class ToolExecutionError(Exception):
@@ -29,7 +28,7 @@ class ToolRunner:
     - Process cleanup
     """
     
-    def __init__(self, logger=None, default_timeout=300):
+    def __init__(self, logger=None, default_timeout=300, retry_count: int = 0, retry_delay: int = 5):
         """
         Initialize tool runner
         
@@ -40,10 +39,20 @@ class ToolRunner:
         self.logger = logger
         self.default_timeout = default_timeout
         self.last_execution = None
-    
-    def run(self, command: List[str], timeout: Optional[int] = None,
-            capture_output: bool = True, check: bool = False,
-            env: Optional[Dict] = None, cwd: Optional[str] = None) -> Dict:
+        self.default_retry_count = retry_count
+        self.default_retry_delay = retry_delay
+
+    def run(
+        self,
+        command: List[str],
+        timeout: Optional[int] = None,
+        capture_output: bool = True,
+        check: bool = False,
+        env: Optional[Dict] = None,
+        cwd: Optional[str] = None,
+        retries: Optional[int] = None,
+        retry_delay: Optional[int] = None,
+    ) -> Dict:
         """
         Execute external command
         
@@ -60,15 +69,51 @@ class ToolRunner:
         """
         if timeout is None:
             timeout = self.default_timeout
-        
-        # Sanitize command
+        if retries is None:
+            retries = self.default_retry_count
+        if retry_delay is None:
+            retry_delay = self.default_retry_delay
+
         if not command or not isinstance(command, list):
             raise ValueError("Command must be a non-empty list")
-        
-        # Log execution start
+
+        attempts = retries + 1
+        last_result: Dict[str, Any] | None = None
+
+        for attempt in range(1, attempts + 1):
+            last_result = self._run_once(
+                command,
+                timeout=timeout,
+                capture_output=capture_output,
+                check=check,
+                env=env,
+                cwd=cwd,
+            )
+
+            if not last_result.get("error"):
+                break
+
+            if attempt < attempts:
+                if self.logger:
+                    self.logger.warning(
+                        f"Retrying {command[0]} ({attempt}/{attempts-1}) after error: {last_result['error']}"
+                    )
+                time.sleep(retry_delay)
+
+        return last_result or {}
+
+    def _run_once(
+        self,
+        command: List[str],
+        timeout: int,
+        capture_output: bool,
+        check: bool,
+        env: Optional[Dict],
+        cwd: Optional[str],
+    ) -> Dict:
         if self.logger:
             self.logger.log_tool_execution(command[0], " ".join(command), "started")
-        
+
         start_time = datetime.now()
         result = {
             "command": " ".join(command),
@@ -77,55 +122,52 @@ class ToolRunner:
             "stderr": "",
             "duration": 0,
             "timed_out": False,
-            "error": None
+            "error": None,
         }
-        
+
         try:
-            # Execute command
             process = subprocess.run(
                 command,
                 capture_output=capture_output,
                 timeout=timeout,
                 text=True,
                 env=env or os.environ.copy(),
-                cwd=cwd
+                cwd=cwd,
             )
-            
+
             result["returncode"] = process.returncode
             result["stdout"] = process.stdout if capture_output else ""
             result["stderr"] = process.stderr if capture_output else ""
-            
-            # Check for errors
+
             if check and process.returncode != 0:
                 raise ToolExecutionError(
                     f"Command failed with return code {process.returncode}: {result['stderr']}"
                 )
-            
-            # Log success
+
             if self.logger:
                 self.logger.log_tool_execution(command[0], "", "completed")
-        
+
         except subprocess.TimeoutExpired:
             result["timed_out"] = True
             result["error"] = f"Command timed out after {timeout} seconds"
             if self.logger:
                 self.logger.error(f"Tool {command[0]} timed out")
-        
+
         except FileNotFoundError:
             result["error"] = f"Tool not found: {command[0]}"
             if self.logger:
-                self.logger.error(f"Tool not found: {command[0]}")
-        
-        except Exception as e:
-            result["error"] = str(e)
+                self.logger.error(result["error"])
+
+        except Exception as exc:
+            result["error"] = str(exc)
             if self.logger:
                 self.logger.exception(f"Tool execution failed: {command[0]}")
-        
+
         finally:
             end_time = datetime.now()
             result["duration"] = (end_time - start_time).total_seconds()
             self.last_execution = result
-        
+
         return result
     
     def run_shell(self, command: str, **kwargs) -> Dict:
