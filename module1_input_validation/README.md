@@ -28,31 +28,48 @@ Module 1 ingests one or more base URLs, performs automatic crawling + smart word
 
 ## Usage
 
-### Run via orchestrator
+### Single Target (common)
 
 ```bash
 python3 run_module.py --module=1 \
-  --target=https://target.local \
-  --enable-zap \
-  --enable-nikto \
+  --target=https://acme.app \
   --depth=3 \
+  --max-endpoints=50 \
+  --enable-nikto --enable-zap \
   --debug
 ```
 
-### Standalone execution
+### Multiple Targets (targets file)
+
+```
+# targets.txt
+https://dev.app.local
+http://testphp.vulnweb.com
+https://api.qa.local
+```
+
+```bash
+python3 run_module.py --module=1 \
+  --target-file=targets.txt \
+  --depth=2 \
+  --max-endpoints=30
+```
+
+### Standalone Execution (optional)
 
 ```bash
 python3 module1_input_validation/main.py \
-  --target-file targets.txt \
-  --max-endpoints 50 \
-  --depth 3
+  --target=https://staging.app \
+  --depth=2 --max-endpoints=25
 ```
 
-- `--target` – single URL override.
-- `--target-file` – newline-delimited URL list (can be combined with `--target`).
-- `--depth` – recursion depth for crawler.
-- `--max-endpoints` – fuzzing limit per target.
-- `--enable-zap/--enable-nikto` – trigger external tool runners when configured.
+**Parameter summary**
+
+- `--target`, `--target-file`: base URLs; can use both (target file processed after single target).
+- `--depth`: crawler depth (default 2). Increase for larger sites.
+- `--max-endpoints`: max endpoints per target (default 25). Controls runtime.
+- `--enable-zap`, `--enable-nikto`: run external tools when paths exist in `config/tool_paths.yaml`.
+- `--config-dir`: point to alternate config directory (default `./config`).
 
 ## Output
 

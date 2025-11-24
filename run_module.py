@@ -37,7 +37,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--target", type=str, help="Override target URL for the module.")
     parser.add_argument("--target-file", type=str, help="Path to file containing list of targets (module specific).")
     parser.add_argument("--depth", type=int, help="Discovery depth override (module specific).")
-    parser.add_argument("--max-endpoints", type=int, help="Limit of endpoints for fuzzing (module specific).")
+    parser.add_argument("--max-endpoints", type=int, help="Limit of endpoints/pages (module specific).")
+    parser.add_argument("--max-pages", type=int, help="Alias for modules expecting page limits.")
     parser.add_argument("--enable-zap", action="store_true", help="Enable OWASP ZAP where supported.")
     parser.add_argument("--enable-nikto", action="store_true", help="Enable Nikto where supported.")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging.")
@@ -116,6 +117,7 @@ def instantiate_analyzer(cls, config: Config, args: argparse.Namespace):
         "target_file": args.target_file,
         "max_depth": args.depth,
         "max_endpoints": args.max_endpoints,
+        "max_pages": args.max_pages,
         "enable_zap": args.enable_zap,
         "enable_nikto": args.enable_nikto,
     }
