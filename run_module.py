@@ -41,6 +41,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-pages", type=int, help="Alias for modules expecting page limits.")
     parser.add_argument("--enable-zap", action="store_true", help="Enable OWASP ZAP where supported.")
     parser.add_argument("--enable-nikto", action="store_true", help="Enable Nikto where supported.")
+    parser.add_argument("--enable-testssl", action="store_true", help="Enable testssl.sh for Module 4.")
+    parser.add_argument("--log-path", type=str, help="Path to log files for Module 6.")
+    parser.add_argument("--document-path", type=str, help="Path to documents for Modules 4 and 6.")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging.")
     parser.add_argument("--dry-run", action="store_true", help="Only load module without executing tools.")
     parser.add_argument("--config-dir", default="config", help="Path to configuration directory.")
@@ -120,6 +123,9 @@ def instantiate_analyzer(cls, config: Config, args: argparse.Namespace):
         "max_pages": args.max_pages,
         "enable_zap": args.enable_zap,
         "enable_nikto": args.enable_nikto,
+        "enable_testssl": args.enable_testssl,
+        "log_path": args.log_path,
+        "document_path": args.document_path,
     }
     for param_name, value in optional_map.items():
         if value is None:
