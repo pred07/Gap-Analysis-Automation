@@ -1,0 +1,3 @@
+https://example.com
+http://testphp.vulnweb.com
+https://dummyjson.com

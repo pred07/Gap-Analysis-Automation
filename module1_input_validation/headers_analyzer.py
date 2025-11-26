@@ -9,13 +9,13 @@ from typing import Dict, List
 import requests
 
 REQUIRED_HEADERS = {
-    "Content-Security-Policy": "Critical",
-    "X-Content-Type-Options": "High",
-    "X-Frame-Options": "High",
-    "Strict-Transport-Security": "High",
-    "Referrer-Policy": "Medium",
-    "Permissions-Policy": "Medium",
-    "X-XSS-Protection": "Medium",
+    "Content-Security-Policy": "Medium",  # Medium unless XSS is present
+    "X-Content-Type-Options": "Medium",
+    "X-Frame-Options": "Medium",
+    "Strict-Transport-Security": "High",  # High for HTTPS sites
+    "Referrer-Policy": "Low",
+    "Permissions-Policy": "Low",
+    "X-XSS-Protection": "Low",  # Deprecated, browsers ignore it
 }
 
 

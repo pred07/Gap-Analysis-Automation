@@ -1,0 +1,15 @@
+2025-11-26 10:15:23 INFO [UserService] User login successful - user_id: 12345
+2025-11-26 10:15:45 WARN [AuthService] Failed login attempt - username: admin, ip: 192.168.1.100
+2025-11-26 10:16:12 ERROR [DatabaseService] Connection timeout - host: db.example.com:5432
+2025-11-26 10:16:30 INFO [PaymentService] Payment processed - amount: $150.00, card: ****1234
+2025-11-26 10:17:05 DEBUG [APIController] Request received - endpoint: /api/users, method: GET
+2025-11-26 10:17:22 WARN [SecurityService] Suspicious activity detected - ip: 10.0.0.50
+2025-11-26 10:18:10 INFO [CacheService] Cache cleared - keys: 1250
+2025-11-26 10:18:45 ERROR [EmailService] SMTP connection failed - server: smtp.gmail.com
+2025-11-26 10:19:20 INFO [SessionManager] Session created - session_id: abc123xyz
+2025-11-26 10:20:00 CRITICAL [SecurityService] Potential SQL injection attempt blocked - ip: 203.0.113.42
+2025-11-26 10:20:35 INFO [UserService] User logout - user_id: 12345
+2025-11-26 10:21:15 WARN [RateLimiter] Rate limit exceeded - ip: 192.168.1.200, endpoint: /api/search
+2025-11-26 10:22:00 INFO [BackupService] Database backup completed - size: 2.5GB
+2025-11-26 10:22:45 ERROR [FileService] File upload failed - filename: document.pdf, error: size_exceeded
+2025-11-26 10:23:30 INFO [MonitoringService] Health check passed - all services operational

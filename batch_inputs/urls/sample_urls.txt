@@ -1,0 +1,15 @@
+# Sample URLs for Batch Analysis Testing
+
+# Web Applications
+https://example.com
+https://testphp.vulnweb.com
+https://demo.testfire.net
+
+# API Endpoints
+https://api.example.com/v1
+https://jsonplaceholder.typicode.com/posts
+https://reqres.in/api/users
+
+# Infrastructure
+https://admin.example.com
+https://dashboard.example.com

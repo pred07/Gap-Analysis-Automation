@@ -1,0 +1,2875 @@
+{
+  "success": true,
+  "module": "Authentication Analyzer",
+  "module_number": 2,
+  "output_file": "outputs/authentication_analyzer.json",
+  "timestamp": "2025-11-26T18:57:58.227746",
+  "targets": [
+    {
+      "target": "https://admin.example.com",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "https://jsonplaceholder.typicode.com/posts",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://jsonplaceholder.typicode.com/posts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          }
+        ],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "https://reqres.in/api/users",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "fail"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://reqres.in/api/users",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          }
+        ],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": [
+          {
+            "url": "https://reqres.in/api/users",
+            "indicator": "endpoint_accessible_without_token"
+          }
+        ]
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 2,
+        "not_tested": 5
+      }
+    },
+    {
+      "target": "https://api.example.com/v1",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "https://dashboard.example.com",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "https://example.com",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://example.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          }
+        ],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "https://dummyjson.com",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "fail"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://dummyjson.com",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/docs/image",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/products",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/carts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/users",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/posts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/comments",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/quotes",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/todos",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/recipes",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/image",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/auth",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/custom-response",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/docs/image/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/auth/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/docs/products",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/products/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/carts",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/carts/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/recipes",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/recipes/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/users",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/docs/users/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": true
+          },
+          {
+            "url": "https://dummyjson.com/docs/posts/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/posts",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/comments",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/comments/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/todos",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/todos/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/quotes",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/quotes/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/http",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/http/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=png",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=jpg",
+            "status": 200,
+            "content_type": "image/jpeg",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=webp",
+            "status": 200,
+            "content_type": "image/webp",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=bitter",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          }
+        ],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": [
+          {
+            "url": "https://dummyjson.com/docs",
+            "indicator": "endpoint_accessible_without_token"
+          }
+        ]
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 2,
+        "not_tested": 5
+      }
+    },
+    {
+      "target": "https://testphp.vulnweb.com",
+      "controls": {
+        "Password_Policy": "not_tested",
+        "Login_Error_Messages": "not_tested",
+        "Last_Login_Message": "not_tested",
+        "Password_Encryption_Transit": "not_tested",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [],
+        "login_forms": [],
+        "password_forms": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 7,
+        "passed": 0,
+        "failed": 1,
+        "not_tested": 6
+      }
+    },
+    {
+      "target": "http://testphp.vulnweb.com",
+      "controls": {
+        "Password_Policy": "fail",
+        "Login_Error_Messages": "pass",
+        "Last_Login_Message": "fail",
+        "Password_Encryption_Transit": "fail",
+        "Password_Change_Process": "fail",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "http://testphp.vulnweb.com",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/index.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/categories.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/disclaimer.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/cart.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/guestbook.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "name",
+                    "type": "hidden",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "text",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "submit",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/AJAX/index.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/login.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "uname",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "pass",
+                    "type": "password",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "login"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "uname",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "pass",
+                    "type": "password",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "login"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/privacy.php",
+            "status": 404,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/hpp/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/search.php?test=query",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=1",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=2",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=3",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=4",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=1",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=2",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=3",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/signup.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/secured/newuser.php",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "uuname",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "upass",
+                    "type": "password",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "upass2",
+                    "type": "password",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "urname",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "ucc",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "uemail",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "uphone",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "uaddress",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "signup",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "login,password_change"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "searchFor",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "goButton",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/network-attached-storage-dlink/1/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/web-camera-a4tech/2/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/color-printer/3/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/hpp/?pp=12",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/hpp/params.php?p=valid&pp=12",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "aaaa/",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          }
+        ],
+        "login_forms": [
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "method": "POST",
+            "inputs": [
+              {
+                "name": "uname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "pass",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": null,
+                "type": "submit",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              }
+            ],
+            "category": "login"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "method": "POST",
+            "inputs": [
+              {
+                "name": "uname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "pass",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": null,
+                "type": "submit",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              }
+            ],
+            "category": "login"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "method": "POST",
+            "inputs": [
+              {
+                "name": "uuname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "upass",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "upass2",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "urname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "ucc",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uemail",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uphone",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uaddress",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "signup",
+                "type": "submit",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              }
+            ],
+            "category": "login,password_change"
+          }
+        ],
+        "password_forms": [
+          {
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "method": "POST",
+            "inputs": [
+              {
+                "name": "uuname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "upass",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "upass2",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "urname",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "ucc",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uemail",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uphone",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "uaddress",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "signup",
+                "type": "submit",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              }
+            ],
+            "category": "login,password_change"
+          }
+        ],
+        "findings": [
+          {
+            "control": "Password_Policy",
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "issue": "no_policy_hint"
+          },
+          {
+            "control": "Password_Policy",
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "issue": "no_policy_hint"
+          },
+          {
+            "control": "Password_Policy",
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "issue": "no_policy_hint"
+          },
+          {
+            "control": "Password_Policy",
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "issue": "no_policy_hint"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "indicator": "missing_last_login_message"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "issue": "login_form_not_https"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "issue": "login_form_not_https"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "issue": "login_form_not_https"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/secured/newuser.php",
+            "indicator": "weak_password_accepted"
+          }
+        ]
+      },
+      "summary": {
+        "total": 7,
+        "passed": 1,
+        "failed": 5,
+        "not_tested": 1
+      }
+    },
+    {
+      "target": "https://demo.testfire.net",
+      "controls": {
+        "Password_Policy": "fail",
+        "Login_Error_Messages": "pass",
+        "Last_Login_Message": "fail",
+        "Password_Encryption_Transit": "pass",
+        "Password_Change_Process": "not_tested",
+        "Multi_Factor_Authentication": "fail",
+        "API_Authentication": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://demo.testfire.net",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/login.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              },
+              {
+                "url": "https://demo.testfire.net/doLogin",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "uid",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "passw",
+                    "type": "password",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "btnSubmit",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "login"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_contact.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/feedback.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              },
+              {
+                "url": "https://demo.testfire.net/sendFeedback",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "cfile",
+                    "type": "hidden",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "email_addr",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "subject",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "comments",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "submit",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "reset",
+                    "type": "reset",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_deposit.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_checking.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_loans.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_cards.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_investments.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_other.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_deposit.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_lending.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_cards.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_insurance.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_retirement.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_other.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_about.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/cgi.exe",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_investor.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_press.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_careers.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/subscribe.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              },
+              {
+                "url": "https://demo.testfire.net/doSubscribe",
+                "method": "POST",
+                "inputs": [
+                  {
+                    "name": "txtEmail",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": "btnSubmit",
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_savings.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=privacy.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/default.jsp?content=security.htm",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/survey_questions.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=security.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/status_check.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              },
+              {
+                "url": "javascript:checkSiteStatus('AltoroMutual')",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/swagger/index.html",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/search.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/doLogin",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/disclaimer.htm?url=http://www.netscape.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/disclaimer.htm?url=http://www.microsoft.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/sendFeedback",
+            "status": 405,
+            "content_type": "text/html;charset=utf-8",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_community.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  {
+                    "name": "query",
+                    "type": "text",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  },
+                  {
+                    "name": null,
+                    "type": "submit",
+                    "required": false,
+                    "placeholder": "",
+                    "label": null
+                  }
+                ],
+                "category": "general"
+              }
+            ],
+            "mfa_signals": [],
+            "api_candidate": false
+          },
+          {
+            "url": "https://demo.testfire.net/pr/communityannualreport.pdf",
+            "status": 200,
+            "content_type": "application/pdf",
+            "forms": [],
+            "mfa_signals": [],
+            "api_candidate": false
+          }
+        ],
+        "login_forms": [
+          {
+            "url": "https://demo.testfire.net/doLogin",
+            "method": "POST",
+            "inputs": [
+              {
+                "name": "uid",
+                "type": "text",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "passw",
+                "type": "password",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              },
+              {
+                "name": "btnSubmit",
+                "type": "submit",
+                "required": false,
+                "placeholder": "",
+                "label": null
+              }
+            ],
+            "category": "login"
+          }
+        ],
+        "password_forms": [],
+        "findings": [
+          {
+            "control": "Password_Policy",
+            "url": "https://demo.testfire.net/doLogin",
+            "issue": "no_policy_hint"
+          },
+          {
+            "url": "https://demo.testfire.net/doLogin",
+            "indicator": "missing_last_login_message"
+          }
+        ]
+      },
+      "summary": {
+        "total": 7,
+        "passed": 2,
+        "failed": 3,
+        "not_tested": 2
+      }
+    }
+  ],
+  "summary": {
+    "total_controls": 70,
+    "passed": 3,
+    "failed": 18,
+    "not_tested": 49
+  }
+}

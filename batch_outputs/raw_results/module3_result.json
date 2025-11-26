@@ -1,0 +1,2473 @@
+{
+  "success": true,
+  "module": "Authorization Analyzer",
+  "module_number": 3,
+  "output_file": "outputs/authorization_analyzer.json",
+  "timestamp": "2025-11-26T18:58:23.332145",
+  "targets": [
+    {
+      "target": "https://reqres.in/api/users",
+      "controls": {
+        "Role_Based_Access_Control": "not_tested",
+        "User_State_Management": "not_tested",
+        "Database_Permission_Controls": "not_tested",
+        "OS_Level_Access_Restrictions": "pass",
+        "API_Authorization": "fail"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://reqres.in/api/users",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [],
+        "api_endpoints": [
+          "https://reqres.in/api/users"
+        ],
+        "findings": [
+          {
+            "url": "https://reqres.in/api/users",
+            "indicator": "api_accessible_without_token"
+          }
+        ]
+      },
+      "summary": {
+        "total": 5,
+        "passed": 1,
+        "failed": 1,
+        "not_tested": 3
+      }
+    },
+    {
+      "target": "https://jsonplaceholder.typicode.com/posts",
+      "controls": {
+        "Role_Based_Access_Control": "not_tested",
+        "User_State_Management": "not_tested",
+        "Database_Permission_Controls": "not_tested",
+        "OS_Level_Access_Restrictions": "pass",
+        "API_Authorization": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://jsonplaceholder.typicode.com/posts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [],
+        "api_endpoints": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 5,
+        "passed": 1,
+        "failed": 0,
+        "not_tested": 4
+      }
+    },
+    {
+      "target": "https://example.com",
+      "controls": {
+        "Role_Based_Access_Control": "not_tested",
+        "User_State_Management": "not_tested",
+        "Database_Permission_Controls": "not_tested",
+        "OS_Level_Access_Restrictions": "pass",
+        "API_Authorization": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://example.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [],
+        "api_endpoints": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 5,
+        "passed": 1,
+        "failed": 0,
+        "not_tested": 4
+      }
+    },
+    {
+      "target": "http://testphp.vulnweb.com",
+      "controls": {
+        "Role_Based_Access_Control": "not_tested",
+        "User_State_Management": "not_tested",
+        "Database_Permission_Controls": "fail",
+        "OS_Level_Access_Restrictions": "fail",
+        "API_Authorization": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "http://testphp.vulnweb.com",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/style.css",
+            "status": 200,
+            "content_type": "text/css",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/index.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/categories.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/disclaimer.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/cart.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/guestbook.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "method": "POST",
+                "inputs": [
+                  "name",
+                  "submit"
+                ]
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/AJAX/index.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/login.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "method": "POST",
+                "inputs": [
+                  "uname",
+                  "pass",
+                  null
+                ]
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/userinfo.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "method": "POST",
+                "inputs": [
+                  "uname",
+                  "pass",
+                  null
+                ]
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/privacy.php",
+            "status": 404,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/hpp/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/search.php?test=query",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=1",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=2",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=3",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=4",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=1",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=2",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/artists.php?artist=3",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/AJAX/styles.css",
+            "status": 200,
+            "content_type": "text/css",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/signup.php",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/secured/newuser.php",
+                "method": "POST",
+                "inputs": [
+                  "uuname",
+                  "upass",
+                  "upass2",
+                  "urname",
+                  "ucc",
+                  "uemail",
+                  "uphone",
+                  "signup"
+                ]
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php?test=query",
+                "method": "POST",
+                "inputs": [
+                  "searchFor",
+                  "goButton"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/network-attached-storage-dlink/1/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/web-camera-a4tech/2/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/color-printer/3/",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "http://testphp.vulnweb.com/hpp/?pp=12",
+            "status": 200,
+            "content_type": "text/html; charset=UTF-8",
+            "forms": [
+              {
+                "url": "http://testphp.vulnweb.com/hpp/params.php?p=valid&pp=12",
+                "method": "GET",
+                "inputs": [
+                  "aaaa/"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [],
+        "api_endpoints": [],
+        "findings": [
+          {
+            "url": "http://testphp.vulnweb.com/listproducts.php?cat=2",
+            "indicator": "idor_possible"
+          },
+          {
+            "url": "http://testphp.vulnweb.com/admin",
+            "indicator": "restricted_file_accessible"
+          }
+        ]
+      },
+      "summary": {
+        "total": 5,
+        "passed": 0,
+        "failed": 2,
+        "not_tested": 3
+      }
+    },
+    {
+      "target": "https://dummyjson.com",
+      "controls": {
+        "Role_Based_Access_Control": "not_tested",
+        "User_State_Management": "not_tested",
+        "Database_Permission_Controls": "fail",
+        "OS_Level_Access_Restrictions": "pass",
+        "API_Authorization": "fail"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://dummyjson.com",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/fav.png",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/css/styles.css",
+            "status": 200,
+            "content_type": "text/css; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/image",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/products",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/carts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/users",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/posts",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/comments",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/quotes",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/todos",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/recipes",
+            "status": 200,
+            "content_type": "application/json; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/auth",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/custom-response",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/custom-json-highlight.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/common.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/script.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/custom-response.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/css/docs.css",
+            "status": 200,
+            "content_type": "text/css; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/css/prism.css",
+            "status": 200,
+            "content_type": "text/css; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/image/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/auth/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/products",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/products/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/carts",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/carts/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/recipes",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/recipes/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/users",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/users/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": true,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/posts/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/posts",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/comments",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/comments/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/todos",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/todos/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/quotes",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/quotes/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/http",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/docs/http/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/prism.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/public/js/docs.min.js",
+            "status": 200,
+            "content_type": "application/javascript; charset=UTF-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=png",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=jpg",
+            "status": 200,
+            "content_type": "image/jpeg",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/400x200?type=webp",
+            "status": 200,
+            "content_type": "image/webp",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=bitter",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=cairo",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=comfortaa",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=cookie",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=dosis",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=gotham",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=lobster",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=marhey",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=pacifico",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=poppins",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://dummyjson.com/image/250?text=Hello+Peter!&fontFamily=quicksand",
+            "status": 200,
+            "content_type": "image/png",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [],
+        "api_endpoints": [
+          "https://dummyjson.com/docs",
+          "https://dummyjson.com/docs/auth",
+          "https://dummyjson.com/docs/",
+          "https://dummyjson.com/docs/auth/",
+          "https://dummyjson.com/docs/users",
+          "https://dummyjson.com/docs/users/"
+        ],
+        "findings": [
+          {
+            "url": "https://dummyjson.com/image/401x200?type=png",
+            "indicator": "idor_possible"
+          },
+          {
+            "url": "https://dummyjson.com/docs",
+            "indicator": "api_accessible_without_token"
+          }
+        ]
+      },
+      "summary": {
+        "total": 5,
+        "passed": 1,
+        "failed": 2,
+        "not_tested": 2
+      }
+    },
+    {
+      "target": "https://demo.testfire.net",
+      "controls": {
+        "Role_Based_Access_Control": "fail",
+        "User_State_Management": "fail",
+        "Database_Permission_Controls": "fail",
+        "OS_Level_Access_Restrictions": "fail",
+        "API_Authorization": "not_tested"
+      },
+      "evidence": {
+        "pages": [
+          {
+            "url": "https://demo.testfire.net",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/style.css",
+            "status": 200,
+            "content_type": "text/css",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/login.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "https://demo.testfire.net/doLogin",
+                "method": "POST",
+                "inputs": [
+                  "uid",
+                  "passw",
+                  "btnSubmit"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_contact.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/feedback.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "https://demo.testfire.net/sendFeedback",
+                "method": "POST",
+                "inputs": [
+                  "cfile",
+                  "name",
+                  "email_addr",
+                  "subject",
+                  "submit",
+                  "reset"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_deposit.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_checking.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_loans.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_cards.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_investments.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_other.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_deposit.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_lending.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_cards.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_insurance.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_retirement.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=business_other.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_about.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/cgi.exe",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_investor.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_press.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_careers.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/subscribe.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "https://demo.testfire.net/doSubscribe",
+                "method": "POST",
+                "inputs": [
+                  "txtEmail",
+                  "btnSubmit"
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=personal_savings.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=privacy.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/default.jsp?content=security.htm",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/survey_questions.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=security.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/status_check.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "javascript:checkSiteStatus('AltoroMutual')",
+                "method": "GET",
+                "inputs": [
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/swagger/index.html",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/search.jsp",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/doLogin",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/disclaimer.htm?url=http://www.netscape.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/disclaimer.htm?url=http://www.microsoft.com",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/sendFeedback",
+            "status": 405,
+            "content_type": "text/html;charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_community.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/pr/communityannualreport.pdf",
+            "status": 200,
+            "content_type": "application/pdf",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/admin/clients.xls",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "https://demo.testfire.net/admin/doLogin",
+                "method": "POST",
+                "inputs": [
+                  "uid",
+                  "passw",
+                  "btnSubmit"
+                ]
+              }
+            ],
+            "admin_hint": true,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/high_yield_investments.htm",
+            "status": 200,
+            "content_type": "text/html",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/my%20documents/JohnSmith/Bank%20Site%20Documents/grouplife.htm",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_executives.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/inside_points_of_interest.htm",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20061109.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20061005.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060928.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060921.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060817.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060720.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060518.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20060413.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_jobs.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_benefits.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_internships.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=inside_trainee.htm",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/Privacypolicy.jsp?sec=Careers&template=US",
+            "status": 404,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              }
+            ],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          },
+          {
+            "url": "https://demo.testfire.net/doSubscribe",
+            "status": 405,
+            "content_type": "text/html;charset=utf-8",
+            "forms": [],
+            "admin_hint": false,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "protected_pages": [
+          {
+            "url": "https://demo.testfire.net/admin/clients.xls",
+            "status": 200,
+            "content_type": "text/html;charset=ISO-8859-1",
+            "forms": [
+              {
+                "url": "https://demo.testfire.net/search.jsp",
+                "method": "GET",
+                "inputs": [
+                  "query",
+                  null
+                ]
+              },
+              {
+                "url": "https://demo.testfire.net/admin/doLogin",
+                "method": "POST",
+                "inputs": [
+                  "uid",
+                  "passw",
+                  "btnSubmit"
+                ]
+              }
+            ],
+            "admin_hint": true,
+            "requires_auth": false,
+            "api_candidate": false,
+            "traversal_sensitive": false
+          }
+        ],
+        "api_endpoints": [],
+        "findings": [
+          {
+            "url": "https://demo.testfire.net/admin/clients.xls",
+            "indicator": "admin_page_accessible_without_auth"
+          },
+          {
+            "url": "https://demo.testfire.net/admin/clients.xls",
+            "indicator": "sessionless_access"
+          },
+          {
+            "url": "https://demo.testfire.net/index.jsp?content=pr/20061110.htm",
+            "indicator": "idor_possible"
+          },
+          {
+            "url": "https://demo.testfire.net/admin",
+            "indicator": "restricted_file_accessible"
+          }
+        ]
+      },
+      "summary": {
+        "total": 5,
+        "passed": 0,
+        "failed": 4,
+        "not_tested": 1
+      }
+    }
+  ],
+  "summary": {
+    "total_controls": 30,
+    "passed": 4,
+    "failed": 9,
+    "not_tested": 17
+  }
+}

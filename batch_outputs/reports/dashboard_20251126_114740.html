@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security GAP Analysis Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #1e293b;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .header .timestamp {
+            margin-top: 15px;
+            font-size: 0.95em;
+            opacity: 0.8;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 50px 40px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #f1f5f9;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(180deg, #6366f1, #8b5cf6);
+            border-radius: 10px;
+        }
+        
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #475569;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+        }
+        
+        .summary-card .label {
+            font-size: 0.9em;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card .value {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .value.critical { background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .value.high { background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .value.medium { background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .value.success { background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .summary-card .detail {
+            font-size: 0.85em;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+        
+        /* Security Score Gauge */
+        .score-gauge {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        
+        .score-circle {
+            transform: rotate(-90deg);
+        }
+        
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            font-weight: 700;
+        }
+        
+        /* Findings Table */
+        .findings-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 20px;
+        }
+        
+        .findings-table thead th {
+            background: #334155;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #f1f5f9;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+        
+        .findings-table thead th:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+        
+        .findings-table thead th:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .findings-table tbody tr {
+            background: #334155;
+            transition: all 0.2s ease;
+        }
+        
+        .findings-table tbody tr:hover {
+            background: #3f4d63;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .findings-table tbody td {
+            padding: 20px;
+            border: none;
+        }
+        
+        .findings-table tbody tr td:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+        
+        .findings-table tbody tr td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+        
+        /* Severity Badges */
+        .severity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .severity-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .severity-critical {
+            background: linear-gradient(135deg, #7f1d1d, #991b1b);
+            color: #fecaca;
+            border: 1px solid #dc2626;
+        }
+        
+        .severity-critical::before {
+            background: #fecaca;
+        }
+        
+        .severity-high {
+            background: linear-gradient(135deg, #92400e, #b45309);
+            color: #fed7aa;
+            border: 1px solid #f59e0b;
+        }
+        
+        .severity-high::before {
+            background: #fed7aa;
+        }
+        
+        .severity-medium {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: #bfdbfe;
+            border: 1px solid #3b82f6;
+        }
+        
+        .severity-medium::before {
+            background: #bfdbfe;
+        }
+        
+        .severity-low {
+            background: linear-gradient(135deg, #065f46, #047857);
+            color: #a7f3d0;
+            border: 1px solid #10b981;
+        }
+        
+        .severity-low::before {
+            background: #a7f3d0;
+        }
+        
+        .severity-info {
+            background: linear-gradient(135deg, #334155, #475569);
+            color: #cbd5e1;
+            border: 1px solid #64748b;
+        }
+        
+        .severity-info::before {
+            background: #cbd5e1;
+        }
+        
+        /* CVSS Score */
+        .cvss-score {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #1e293b;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Module Cards */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .chart-card {
+            background: #334155;
+            border: 1px solid #475569;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+        
+        .chart-card h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 20px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .chart-legend {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: #cbd5e1;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: #334155;
+            border: 1px solid #475569;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+        
+        .module-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .module-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .module-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .module-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .status-success {
+            background: linear-gradient(135deg, #065f46, #047857);
+            color: #a7f3d0;
+            border: 1px solid #10b981;
+        }
+        
+        .status-failed {
+            background: linear-gradient(135deg, #7f1d1d, #991b1b);
+            color: #fecaca;
+            border: 1px solid #dc2626;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            padding: 40px;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid #334155;
+        }
+        
+        .footer-logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .section { padding: 30px 20px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .module-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media print {
+            body { background: white; color: black; }
+            .container { box-shadow: none; }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        
+    <div class="header">
+        <div class="header-content">
+            <h1>🛡️ Security GAP Analysis Report</h1>
+            <p class="subtitle">Comprehensive Security Assessment Across 65 Controls</p>
+            <p class="timestamp">Generated: 2025-11-26T11:31:59.113999</p>
+            <div style="margin-top: 30px;">
+                <div class="value critical" style="font-size: 4em;">16%</div>
+                <div class="subtitle">Overall Security Score</div>
+            </div>
+        </div>
+    </div>
+
+        
+    <div class="section executive-summary">
+        <h2 class="section-title">Executive Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="label">Modules Executed</div>
+                <div class="value medium">8</div>
+                <div class="detail">8 Successful • 0 Failed</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Controls Passed</div>
+                <div class="value success">11</div>
+                <div class="detail">Out of 65 total controls</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Controls Failed</div>
+                <div class="value critical">11</div>
+                <div class="detail">Require immediate attention</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Not Tested</div>
+                <div class="value high">43</div>
+                <div class="detail">Insufficient data</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Execution Time</div>
+                <div class="value medium">280.7s</div>
+                <div class="detail">4.7 minutes</div>
+            </div>
+        </div>
+    </div>
+
+        
+    <div class="section">
+        <h2 class="section-title">Visual Analytics</h2>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Control Status Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="controlsChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Risk Distribution by Severity</h3>
+                <div class="chart-container">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Findings by Severity</h3>
+                <div class="chart-container">
+                    <canvas id="severityChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Module Performance</h3>
+                <div class="chart-container">
+                    <canvas id="moduleChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+    <div class="section">
+        <h2 class="section-title">Security Findings Overview</h2>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="label">Total Findings</div>
+                <div class="value medium">18</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Critical</div>
+                <div class="value critical">1</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">High</div>
+                <div class="value high">14</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Medium</div>
+                <div class="value medium">3</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Low</div>
+                <div class="value success">0</div>
+            </div>
+        </div>
+    </div>
+
+        
+    <div class="section">
+        <h2 class="section-title">Detailed Findings</h2>
+        <table class="findings-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Finding</th>
+                    <th>Severity</th>
+                    <th>CVSS</th>
+                    <th>Module</th>
+                    <th>Remediation</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#1</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Schema Validation</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">Schema_Validation control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Implement strict JSON schema validation</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#2</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: Content-Security-Policy</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'Content-Security-Policy' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-critical">Critical</span>
+                </td>
+                <td>
+                    <span class="cvss-score">9.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'Content-Security-Policy' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#3</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: X-Content-Type-Options</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'X-Content-Type-Options' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">8.0</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'X-Content-Type-Options' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#4</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: X-Frame-Options</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'X-Frame-Options' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">8.0</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'X-Frame-Options' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#5</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: Strict-Transport-Security</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'Strict-Transport-Security' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">8.0</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'Strict-Transport-Security' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#6</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: Referrer-Policy</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'Referrer-Policy' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-medium">Medium</span>
+                </td>
+                <td>
+                    <span class="cvss-score">5.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'Referrer-Policy' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#7</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: Permissions-Policy</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'Permissions-Policy' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-medium">Medium</span>
+                </td>
+                <td>
+                    <span class="cvss-score">5.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'Permissions-Policy' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#8</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Missing Security Header: X-XSS-Protection</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">The security header 'X-XSS-Protection' is missing from https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-medium">Medium</span>
+                </td>
+                <td>
+                    <span class="cvss-score">5.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 1</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Add the 'X-XSS-Protection' header to your server configuration</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#9</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Multi Factor Authentication</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">Multi_Factor_Authentication control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 2</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#10</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Api Authentication</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">API_Authentication control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 2</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#11</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Database Permission Controls</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">Database_Permission_Controls control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 3</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#12</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Api Authorization</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">API_Authorization control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 3</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#13</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Sensitive Data Masking</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">Sensitive_Data_Masking control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 4</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#14</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Pci Pan Masking</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">PCI_PAN_Masking control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 4</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#15</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Clear Text Detection</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">Clear_Text_Detection control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 4</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#16</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Api Authentication Validation</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">API_Authentication_Validation control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 7</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#17</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Api Cors Configuration</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">API_CORS_Configuration control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 7</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600; color: #cbd5e1;">#18</td>
+                <td>
+                    <div style="font-weight: 600; color: #f1f5f9; margin-bottom: 5px;">Api Versioning</div>
+                    <div style="font-size: 0.9em; color: #94a3b8;">API_Versioning control failed for https://dummyjson.com</div>
+                </td>
+                <td>
+                    <span class="severity-badge severity-high">High</span>
+                </td>
+                <td>
+                    <span class="cvss-score">7.5</span>
+                </td>
+                <td style="font-size: 0.9em; color: #94a3b8;">Module 7</td>
+                <td style="font-size: 0.85em; color: #94a3b8; max-width: 300px;">Review and implement security best practices</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+        
+    <div class="section">
+        <h2 class="section-title">Module Details</h2>
+        <div class="module-grid">
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">1</div>
+                    <div class="module-name">Input & Data Validation</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">8</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">3 Passed</strong> • <strong style="color: #ef4444;">1 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">2</div>
+                    <div class="module-name">Authentication</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">2</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">0 Passed</strong> • <strong style="color: #ef4444;">2 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">3</div>
+                    <div class="module-name">Authorization</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">2</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">1 Passed</strong> • <strong style="color: #ef4444;">2 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">4</div>
+                    <div class="module-name">Sensitive Data Protection</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">3</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">1 Passed</strong> • <strong style="color: #ef4444;">3 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">5</div>
+                    <div class="module-name">Session Management</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">0</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">1 Passed</strong> • <strong style="color: #ef4444;">0 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">6</div>
+                    <div class="module-name">Logging & Monitoring</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">0</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">0 Passed</strong> • <strong style="color: #ef4444;">0 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">7</div>
+                    <div class="module-name">API Security</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">3</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">5 Passed</strong> • <strong style="color: #ef4444;">3 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">8</div>
+                    <div class="module-name">Infrastructure & Containers</div>
+                </div>
+                <div style="color: #94a3b8; margin-bottom: 15px;">
+                    <div>Findings: <strong style="color: #f1f5f9;">0</strong></div>
+                    <div>Controls: <strong style="color: #10b981;">0 Passed</strong> • <strong style="color: #ef4444;">0 Failed</strong></div>
+                </div>
+                <div class="module-status status-success">
+                    <span>●</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        
+    <div class="footer">
+        <div class="footer-logo">🛡️ Security GAP Analysis System</div>
+        <p style="margin: 10px 0;">Automated Security Testing Across 8 Modules • 65 Controls</p>
+        <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.7;">
+            Version 1.0.0 • Powered by Advanced Security Analytics
+        </p>
+    </div>
+
+    </div>
+    
+    <script>
+        console.log('🛡️ Security GAP Analysis Dashboard loaded');
+        
+        // Chart.js default configuration
+        Chart.defaults.color = '#cbd5e1';
+        Chart.defaults.borderColor = '#475569';
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        
+        // Control Status Donut Chart
+        const controlsCtx = document.getElementById('controlsChart');
+        if (controlsCtx) {
+            new Chart(controlsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Passed', 'Failed', 'Not Tested'],
+                    datasets: [{
+                        data: [11, 11, 43],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.8)',  // Green
+                            'rgba(239, 68, 68, 0.8)',   // Red
+                            'rgba(59, 130, 246, 0.8)'   // Blue
+                        ],
+                        borderColor: [
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(59, 130, 246, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const total = 65;
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return label + ': ' + value + ' (' + percentage + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Risk Distribution Bar Chart
+        const riskCtx = document.getElementById('riskChart');
+        if (riskCtx) {
+            new Chart(riskCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Critical', 'High', 'Medium', 'Low'],
+                    datasets: [{
+                        label: 'Number of Findings',
+                        data: [1, 14, 3, 0],
+                        backgroundColor: [
+                            'rgba(220, 38, 38, 0.8)',   // Critical - Red
+                            'rgba(245, 158, 11, 0.8)',  // High - Orange
+                            'rgba(59, 130, 246, 0.8)',  // Medium - Blue
+                            'rgba(16, 185, 129, 0.8)'   // Low - Green
+                        ],
+                        borderColor: [
+                            'rgba(220, 38, 38, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(16, 185, 129, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            grid: {
+                                color: '#334155'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Findings: ' + context.parsed.y;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Severity Pie Chart
+        const severityCtx = document.getElementById('severityChart');
+        if (severityCtx) {
+            new Chart(severityCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Critical', 'High', 'Medium', 'Low'],
+                    datasets: [{
+                        data: [1, 14, 3, 0],
+                        backgroundColor: [
+                            'rgba(220, 38, 38, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(16, 185, 129, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(220, 38, 38, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(16, 185, 129, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    return label + ': ' + value + ' findings';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Module Performance Horizontal Bar Chart
+        const moduleCtx = document.getElementById('moduleChart');
+        if (moduleCtx) {
+            new Chart(moduleCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Input Validation', 'Authentication', 'Authorization', 'Data Protection', 'Session Mgmt', 'Logging', 'API Security', 'Infrastructure'],
+                    datasets: [
+                        {
+                            label: 'Passed',
+                            data: [3, 0, 1, 1, 1, 0, 5, 0],
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 2,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Failed',
+                            data: [1, 2, 2, 3, 0, 0, 3, 0],
+                            backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            borderWidth: 2,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            stacked: false,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            grid: {
+                                color: '#334155'
+                            }
+                        },
+                        y: {
+                            stacked: false,
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.x + ' controls';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Filter functionality
+        function filterFindings(severity) {
+            const rows = document.querySelectorAll('.findings-table tbody tr');
+            rows.forEach(row => {
+                if (severity === 'all' || row.textContent.includes(severity)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+        
+        // Print functionality
+        function printReport() {
+            window.print();
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

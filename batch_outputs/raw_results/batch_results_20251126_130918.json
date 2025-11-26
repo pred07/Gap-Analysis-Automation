@@ -1,0 +1,73 @@
+{
+  "timestamp": "2025-11-26T12:21:10.072361",
+  "execution_time": 2888.409975,
+  "summary": {
+    "total_modules": 8,
+    "successful_modules": 7,
+    "failed_modules": 1,
+    "total_controls": 65,
+    "controls_passed": 0,
+    "controls_failed": 0,
+    "controls_not_tested": 0,
+    "execution_time": 2888.409975,
+    "timestamp": "2025-11-26T12:21:10.072361"
+  },
+  "module_results": {
+    "1": {
+      "success": true,
+      "module": "Input & Data Validation Analyzer",
+      "module_number": 1,
+      "output_file": "outputs/input_and_data_validation_analyzer.json",
+      "timestamp": "2025-11-26T13:01:34.997130"
+    },
+    "2": {
+      "success": true,
+      "module": "Authentication Analyzer",
+      "module_number": 2,
+      "output_file": "outputs/authentication_analyzer.json",
+      "timestamp": "2025-11-26T13:02:22.871542"
+    },
+    "3": {
+      "status": "failed",
+      "error": "Invalid URL '/etc/passwd': No scheme supplied. Perhaps you meant https:///etc/passwd?"
+    },
+    "4": {
+      "success": true,
+      "module": "Sensitive Data Protection Analyzer",
+      "module_number": 4,
+      "output_file": "outputs/sensitive_data_protection_analyzer.json",
+      "timestamp": "2025-11-26T13:03:25.576477"
+    },
+    "5": {
+      "success": true,
+      "module": "Session Management Analyzer",
+      "module_number": 5,
+      "output_file": "outputs/session_management_analyzer.json",
+      "timestamp": "2025-11-26T13:04:56.131906"
+    },
+    "6": {
+      "success": true,
+      "module": "Logging & Monitoring Analyzer",
+      "module_number": 6,
+      "output_file": "outputs/logging_and_monitoring_analyzer.json",
+      "timestamp": "2025-11-26T13:06:15.734707"
+    },
+    "7": {
+      "success": true,
+      "module": "Application & API Security Analyzer",
+      "module_number": 7,
+      "output_file": "outputs/application_and_api_security_analyzer.json",
+      "timestamp": "2025-11-26T13:09:18.463244"
+    },
+    "8": {
+      "success": true,
+      "module": "Infrastructure & Container Analyzer",
+      "module_number": 8,
+      "output_file": "outputs/infrastructure_and_container_analyzer.json",
+      "timestamp": "2025-11-26T13:09:18.481724"
+    }
+  },
+  "errors": [
+    "Module 3 failed: Invalid URL '/etc/passwd': No scheme supplied. Perhaps you meant https:///etc/passwd?"
+  ]
+}

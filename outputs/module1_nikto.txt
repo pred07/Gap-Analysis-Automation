@@ -17,3 +17,421 @@
 + GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
 + GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
 - Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=9,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1763957807.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=3,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1764129936.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=k%2BD2KgLWGUpEJ4fYfJLgF7y64TFX%2BjmoB1trRqX%2B0jc%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764139403".
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: c0a7ed3e-7de3-ffa9-4227-fc8db06e4c6a.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/ZnQTfmeL.old: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 999.
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=3,cfOrigin;dur=0,).
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=4d7m5JmzvQYVN910L9YB2u5kOuxCWJ%2FXB3etnEwabvE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1764138608".
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1764138618.
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1764129936.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=5,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=NOXEb6taDMCYIzk4%2BkzcLPT5C5DDtSxRwjq7wlCV0Tw%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764141033".
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: d4ab4f08-1a3f-52c5-5701-947439964034.
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/YUDD89Y3.old: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /api/users: Retrieved x-powered-by header: ReqRes.in - Deploy backends in 30 seconds.
++ GET /api/users: Uncommon header 'x-reqres-message' found, with contents: This API is powered by ReqRes. Deploy your own backend in 30 seconds!.
++ GET /api/users: Uncommon header 'x-reqres-docs' found, with contents: https://reqres.in.
++ GET /api/users: Uncommon header 'x-reqres-upgrade' found, with contents: https://app.reqres.in/upgrade.
++ GET /api/users: Uncommon header 'x-reqres-templates' found, with contents: https://app.reqres.in/templates.
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: 4be76d48-4d0e-90d5-1676-b55ba390c271.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=Yki1zfat9ZFSx00KaQOww03XNSQPM%2BxDjktvp9R9GYI%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764143215".
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/Nu3JVLZp.bak: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 998.
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=2xASQmNXf1jxamWaQ0yQPDbx1piB2vloPq8tOKH0SAY%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1763390542".
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=4,cfOrigin;dur=0,).
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1763390564.
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1764129936.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=7,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1763959626.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=6,cfOrigin;dur=0,).
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1764138618.
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=4d7m5JmzvQYVN910L9YB2u5kOuxCWJ%2FXB3etnEwabvE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1764138608".
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 999.
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=3,cfOrigin;dur=0,).
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: 7d63e8ed-8e74-e33d-3619-f15ab601a511.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=LWZF4yzif%2FBwoQX%2FNG0jWDCKCm6nTy2a%2BmzwEW%2B6goE%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764149593".
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/OZdALu8M.tmp: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
++ Target Host: demo.testfire.net
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=hARWhw%2FHUosn3InN0phu9z%2FQbjT2bErb2abRWPHesNM%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764152446".
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: a9fabff5-c9b9-58c9-45a8-fac2a774a530.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/7AEYqZ2W.swp: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1763871355.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=6,cfOrigin;dur=0,).
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=4,cfOrigin;dur=0,).
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 999.
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=4d7m5JmzvQYVN910L9YB2u5kOuxCWJ%2FXB3etnEwabvE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1764138608".
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1764138618.
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /: Potential PHP MySQL database connection string found.
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1763871355.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=7,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=7,cfOrigin;dur=0,).
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1763966668.
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 999.
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=S0Yky%2FzjYzCbJ4qLRH4uG3ecN846H5cr37q%2BNMgfZ48%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1763966618".
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: 600124b6-0e08-34cd-3169-056212fb930e.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=yrZLUc0txYPmoA528XBngas%2BjE0oNBi66ARrf6EBqcs%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764158866".
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 99.
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/0J7c248d.old: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /api/users: Retrieved x-powered-by header: ReqRes.in - Deploy backends in 30 seconds.
++ GET /api/users: Uncommon header 'x-reqres-templates' found, with contents: https://app.reqres.in/templates.
++ GET /api/users: Uncommon header 'x-reqres-upgrade' found, with contents: https://app.reqres.in/upgrade.
++ GET /api/users: Uncommon header 'x-reqres-docs' found, with contents: https://reqres.in.
++ GET /api/users: Uncommon header 'x-reqres-message' found, with contents: This API is powered by ReqRes. Deploy your own backend in 30 seconds!.
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: reqres.in
++ Target Port: 443
++ GET /api/users/: Retrieved via header: 1.1 heroku-router.
++ GET /api/users/: Retrieved access-control-allow-origin header: http://localhost:5173.
++ GET /api/users/: Uncommon header 'ratelimit-limit' found, with contents: 100.
++ GET /api/users/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=DpVEf0V3A1qo5M15XdJvhTVVuRJAr1qruClM%2Bu72kUw%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1764162695".
++ GET /api/users/: Uncommon header 'ratelimit-remaining' found, with contents: 98.
++ GET /api/users/: Uncommon header 'x-request-id' found, with contents: e316f88e-ce19-9979-3e0e-16846a1b6282.
++ GET /api/users/: Uncommon header 'ratelimit-policy' found, with contents: 100;w=60.
++ GET /api/users/: Uncommon header 'ratelimit-reset' found, with contents: 60.
++ GET /api/users/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /api/users/9ufdgsaz.old: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /api/users: Retrieved x-powered-by header: ReqRes.in - Deploy backends in 30 seconds.
++ GET /api/users: Uncommon header 'x-reqres-message' found, with contents: This API is powered by ReqRes. Deploy your own backend in 30 seconds!.
++ GET /api/users: Uncommon header 'x-reqres-templates' found, with contents: https://app.reqres.in/templates.
++ GET /api/users: Uncommon header 'x-reqres-upgrade' found, with contents: https://app.reqres.in/upgrade.
++ GET /api/users: Uncommon header 'x-reqres-docs' found, with contents: https://reqres.in.
+- Nikto v2.5.0/
++ Target Host: dummyjson.com
++ Target Port: 443
++ GET /: Retrieved access-control-allow-origin header: *.
++ GET /: Uncommon header 'x-ratelimit-limit' found, with contents: 100.
++ GET /: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=6,cfOrigin;dur=0,).
++ GET /: Uncommon header 'x-ratelimit-reset' found, with contents: 1764048168.
++ GET /: Uncommon header 'x-ratelimit-remaining' found, with contents: 99.
++ GET /robots.txt: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /robots.txt: contains 10 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt: 
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: jsonplaceholder.typicode.com
++ Target Port: 443
++ GET /posts/: Retrieved via header: 2.0 heroku-router.
++ GET /posts/: Retrieved x-powered-by header: Express.
++ GET /posts/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /posts/: Uncommon header 'x-ratelimit-remaining' found, with contents: 998.
++ GET /posts/: Uncommon header 'reporting-endpoints' found, with contents: heroku-nel="https://nel.heroku.com/reports?s=2xASQmNXf1jxamWaQ0yQPDbx1piB2vloPq8tOKH0SAY%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1763390542".
++ GET /posts/: Uncommon header 'x-ratelimit-limit' found, with contents: 1000.
++ GET /posts/: Uncommon header 'x-ratelimit-reset' found, with contents: 1763390564.
++ GET /posts/: Uncommon header 'server-timing' found, with multiple values: (cfCacheStatus;desc="HIT",cfEdge;dur=2,cfOrigin;dur=0,).
++ GET /posts/: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /posts/: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /posts.: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /posts/: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
+- Nikto v2.5.0/
+- Nikto v2.5.0/
++ Target Host: testphp.vulnweb.com
++ Target Port: 80
++ GET /: Retrieved x-powered-by header: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /clientaccesspolicy.xml contains a full wildcard entry. See: https://docs.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/cc197955(v=vs.95)?redirectedfrom=MSDN: 
++ GET /clientaccesspolicy.xml contains 12 lines which should be manually viewed for improper domains or wildcards. See: https://www.acunetix.com/vulnerabilities/web/insecure-clientaccesspolicy-xml-file/: 
++ GET /crossdomain.xml contains a full wildcard entry. See: http://jeremiahgrossman.blogspot.com/2008/05/crossdomainxml-invites-cross-site.html: 
+- Nikto v2.5.0/
++ Target Host: example.com
++ Target Port: 443
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 

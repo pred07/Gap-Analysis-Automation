@@ -64,16 +64,16 @@ class SecurityLogger:
         self.info(f"\n{title}\n{'-'*60}")
     
     def log_control_result(self, cid, name, status, details=""):
-        sym = {'pass':'✓', 'fail':'✗', 'not_tested':'○'}.get(status.lower(), '?')
+        sym = {'pass':'[PASS]', 'fail':'[FAIL]', 'not_tested':'[SKIP]'}.get(status.lower(), '[?]')
         color = {'pass':Fore.GREEN, 'fail':Fore.RED, 'not_tested':Fore.YELLOW}.get(status.lower(), '') if COLORAMA else ''
         msg = f"{sym} [{cid}] {name}: {color}{status.upper()}{Style.RESET_ALL if COLORAMA else ''}"
         if details: msg += f" - {details}"
         self.info(msg)
     
     def log_tool_execution(self, tool, cmd, status="started"):
-        if status == "started": self.info(f"🔧 Executing {tool}: {cmd}")
-        elif status == "completed": self.info(f"✓ {tool} completed")
-        elif status == "failed": self.error(f"✗ {tool} failed")
+        if status == "started": self.info(f"[EXEC] Executing {tool}: {cmd}")
+        elif status == "completed": self.info(f"[OK] {tool} completed")
+        elif status == "failed": self.error(f"[FAIL] {tool} failed")
     
     def log_summary(self, total, passed, failed, not_tested):
         self.log_section("TEST SUMMARY")

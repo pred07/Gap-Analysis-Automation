@@ -1,0 +1,361 @@
+{
+  "success": true,
+  "module": "Application & API Security Analyzer",
+  "module_number": 7,
+  "output_file": "outputs/application_and_api_security_analyzer.json",
+  "timestamp": "2025-11-26T19:01:43.059809",
+  "targets": [
+    {
+      "target": "https://admin.example.com",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://jsonplaceholder.typicode.com/posts",
+      "controls": {
+        "API_Method_Security": "pass",
+        "API_Rate_Limiting": "pass",
+        "API_Input_Validation": "pass",
+        "API_Authentication_Validation": "pass",
+        "API_Sensitive_Params": "pass",
+        "API_Error_Handling": "pass",
+        "API_CORS_Configuration": "fail",
+        "API_Versioning": "fail",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [
+          "https://jsonplaceholder.typicode.com/posts"
+        ],
+        "documents": [],
+        "findings": [
+          {
+            "endpoint": "https://jsonplaceholder.typicode.com/posts",
+            "indicator": "cors_reflected_origin"
+          },
+          {
+            "indicator": "no_api_versioning_detected"
+          }
+        ]
+      },
+      "summary": {
+        "total": 10,
+        "passed": 6,
+        "failed": 2,
+        "not_tested": 2
+      }
+    },
+    {
+      "target": "https://example.com",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://api.example.com/v1",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://dashboard.example.com",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://reqres.in/api/users",
+      "controls": {
+        "API_Method_Security": "pass",
+        "API_Rate_Limiting": "fail",
+        "API_Input_Validation": "pass",
+        "API_Authentication_Validation": "fail",
+        "API_Sensitive_Params": "pass",
+        "API_Error_Handling": "pass",
+        "API_CORS_Configuration": "fail",
+        "API_Versioning": "fail",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [
+          "https://reqres.in/api",
+          "https://reqres.in/api/users"
+        ],
+        "documents": [],
+        "findings": [
+          {
+            "endpoint": "https://reqres.in/api",
+            "indicator": "no_rate_limiting_detected"
+          },
+          {
+            "endpoint": "https://reqres.in/api/users",
+            "indicator": "no_rate_limiting_detected"
+          },
+          {
+            "endpoint": "https://reqres.in/api/users",
+            "status_code": 200,
+            "indicator": "protected_endpoint_accessible_without_auth"
+          },
+          {
+            "endpoint": "https://reqres.in/api",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "endpoint": "https://reqres.in/api/users",
+            "indicator": "cors_reflected_origin"
+          },
+          {
+            "indicator": "no_api_versioning_detected"
+          }
+        ]
+      },
+      "summary": {
+        "total": 10,
+        "passed": 4,
+        "failed": 4,
+        "not_tested": 2
+      }
+    },
+    {
+      "target": "http://testphp.vulnweb.com",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://dummyjson.com",
+      "controls": {
+        "API_Method_Security": "pass",
+        "API_Rate_Limiting": "pass",
+        "API_Input_Validation": "pass",
+        "API_Authentication_Validation": "fail",
+        "API_Sensitive_Params": "pass",
+        "API_Error_Handling": "pass",
+        "API_CORS_Configuration": "fail",
+        "API_Versioning": "fail",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [
+          "https://dummyjson.com/recipes",
+          "https://dummyjson.com/comments",
+          "https://dummyjson.com/quotes",
+          "https://dummyjson.com/products",
+          "https://dummyjson.com/todos",
+          "https://dummyjson.com/users",
+          "https://dummyjson.com/carts",
+          "https://dummyjson.com/posts"
+        ],
+        "documents": [],
+        "findings": [
+          {
+            "endpoint": "https://dummyjson.com/users",
+            "status_code": 200,
+            "indicator": "protected_endpoint_accessible_without_auth"
+          },
+          {
+            "endpoint": "https://dummyjson.com/recipes",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "endpoint": "https://dummyjson.com/comments",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "endpoint": "https://dummyjson.com/quotes",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "endpoint": "https://dummyjson.com/products",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "endpoint": "https://dummyjson.com/todos",
+            "indicator": "cors_wildcard_allowed"
+          },
+          {
+            "indicator": "no_api_versioning_detected"
+          }
+        ]
+      },
+      "summary": {
+        "total": 10,
+        "passed": 5,
+        "failed": 3,
+        "not_tested": 2
+      }
+    },
+    {
+      "target": "https://testphp.vulnweb.com",
+      "controls": {
+        "API_Method_Security": "not_tested",
+        "API_Rate_Limiting": "not_tested",
+        "API_Input_Validation": "not_tested",
+        "API_Authentication_Validation": "not_tested",
+        "API_Sensitive_Params": "not_tested",
+        "API_Error_Handling": "not_tested",
+        "API_CORS_Configuration": "not_tested",
+        "API_Versioning": "not_tested",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [],
+        "documents": [],
+        "findings": []
+      },
+      "summary": {
+        "total": 10,
+        "passed": 0,
+        "failed": 0,
+        "not_tested": 10
+      }
+    },
+    {
+      "target": "https://demo.testfire.net",
+      "controls": {
+        "API_Method_Security": "pass",
+        "API_Rate_Limiting": "fail",
+        "API_Input_Validation": "pass",
+        "API_Authentication_Validation": "pass",
+        "API_Sensitive_Params": "pass",
+        "API_Error_Handling": "pass",
+        "API_CORS_Configuration": "pass",
+        "API_Versioning": "fail",
+        "Secure_Coding_Evidence": "not_tested",
+        "Third_Party_Components": "not_tested"
+      },
+      "evidence": {
+        "api_endpoints": [
+          "https://demo.testfire.net/swagger/index.html"
+        ],
+        "documents": [],
+        "findings": [
+          {
+            "endpoint": "https://demo.testfire.net/swagger/index.html",
+            "indicator": "no_rate_limiting_detected"
+          },
+          {
+            "indicator": "no_api_versioning_detected"
+          }
+        ]
+      },
+      "summary": {
+        "total": 10,
+        "passed": 6,
+        "failed": 2,
+        "not_tested": 2
+      }
+    }
+  ],
+  "summary": {
+    "total_controls": 100,
+    "passed": 21,
+    "failed": 11,
+    "not_tested": 68
+  }
+}

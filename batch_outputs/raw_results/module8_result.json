@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "module": "Infrastructure & Container Analyzer",
+  "module_number": 8,
+  "output_file": "outputs/infrastructure_and_container_analyzer.json",
+  "timestamp": "2025-11-26T19:01:43.244575",
+  "targets": [],
+  "summary": {
+    "total_controls": 0,
+    "passed": 0,
+    "failed": 0,
+    "not_tested": 48
+  }
+}
